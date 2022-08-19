@@ -36,14 +36,12 @@ func NewIDGen(redis redis.Cmdable, inst int64) *IDGen {
 	return &IDGen{redisCli: redis, instID: inst}
 }
 
-func (ig *IDGen) New() (id int64, downgraded bool) {
+func (ig *IDGen) New() (id int64, err error) {
 	ts, sn := now(), int64(0)
 	key := fmt.Sprintf("idgen:%d:%d", (ig.instID & 0xF), ts)
 	if ig.redisCli != nil {
-		var err error
 		if sn, err = ig.redisCli.Incr(key).Result(); err != nil {
 			sn = rand.Int63n(1048576) // downgrade to use random num
-			downgraded = true
 		} else if sn == 1 {
 			ig.redisCli.Expire(key, expiration) // new item, set expiration
 		}
@@ -54,7 +52,7 @@ func (ig *IDGen) New() (id int64, downgraded bool) {
 			cache.Put(key, &sn)
 		}
 	}
-	return ((ts - timeOff) << 24) + ((sn & 0xFFFFF) << 4) + (ig.instID & 0xF), downgraded
+	return ((ts - timeOff) << 24) + ((sn & 0xFFFFF) << 4) + (ig.instID & 0xF), err
 }
 
 func Parse(id int64) (ts int64, instID int64, sn int64) {
