@@ -29,12 +29,12 @@ import (
 #### 定义实例（预计5秒）
 > 可以放置在任意位置（全局也可以），建议就近定义
 ``` go
-var idg = idgen.NewIDGen(redisCli, 0) // 参数1是redis连接，传nil说明是本地生成，参数2是实例号(会取模16)
+var ig = idgen.NewIDGen(redisCli, 0) // 参数1是redis连接，传nil说明是本地生成，参数2是实例号(会取模16)
 ```
 
 #### 获取🆔（预计5秒）
 ``` go
-id, downgraded := idg.New() // 返回生成的id，以及是否是降级生成的
+id, err := ig.New() // 返回生成的id，以及是否出错（只有在redis出错的情况下才会返回err，此时是降级，用的是随机数）
 ```
 
 #### 解析🆔（预计5秒）
