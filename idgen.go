@@ -18,6 +18,7 @@ var clock = time.Now().Unix()
 
 func now() int64 { return atomic.LoadInt64(&clock) }
 func init() {
+	rand.Seed(now())
 	go func() { // internal counter that reduce GC caused by `time.Now()`
 		for {
 			atomic.StoreInt64(&clock, time.Now().Unix()) // calibration every second
@@ -29,10 +30,6 @@ func init() {
 type IDGen struct {
 	redisCli redis.Cmdable
 	instID   int64
-}
-
-func init() {
-	rand.Seed(now())
 }
 
 func NewIDGen(redis redis.Cmdable, inst int64) *IDGen {
