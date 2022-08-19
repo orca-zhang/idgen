@@ -32,20 +32,20 @@ type IDGen struct {
 }
 
 func init() {
-	rand.Seed(time.Now().Unix())
+	rand.Seed(now())
 }
 
-func NewIDGen(redis redis.Cmdable, i int64) *IDGen {
-	return &IDGen{redisCli: redis, instID: i}
+func NewIDGen(redis redis.Cmdable, inst int64) *IDGen {
+	return &IDGen{redisCli: redis, instID: inst}
 }
 
 func (ig *IDGen) New() (id int64, downgraded bool) {
-	ts, sn := int64(now()), int64(0)
+	ts, sn := now(), int64(0)
 	key := fmt.Sprintf("idgen:%d:%d", (ig.instID & 0xF), ts)
 	if ig.redisCli != nil {
 		var err error
 		if sn, err = ig.redisCli.Incr(key).Result(); err != nil {
-			sn = rand.Int63n(1048576) // upgrade to use random num
+			sn = rand.Int63n(1048576) // downgrade to use random num
 			downgraded = true
 		} else if sn == 1 {
 			ig.redisCli.Expire(key, expiration) // new item, set expiration
