@@ -34,7 +34,8 @@ var ig = idgen.NewIDGen(redisCli, 0) // 参数1是redis连接，传nil说明是�
 
 #### 获取🆔（预计5秒）
 ``` go
-id, err := ig.New() // 返回生成的id，以及是否出错（只有在redis出错的情况下才会返回err，此时是降级，用的是随机数）
+id, err := ig.New() // 返回生成的id，以及是否出错
+                    //（只有在redis出错的情况下才会返回err，此时是降级，sn部分用的是随机数）
 ```
 
 #### 解析🆔（预计5秒）
