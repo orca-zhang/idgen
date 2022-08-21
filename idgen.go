@@ -52,9 +52,9 @@ func (ig *IDGen) New() (id int64, err error) {
 			cache.Put(key, &sn)
 		}
 	}
-	return ((ts - timeOff) << 24) + ((sn & 0xFFFFF) << 4) + (ig.instID & 0xF), err
+	return ((ts - timeOff) << 24) + ((ig.instID & 0xF) << 20) + (sn & 0xFFFFF), err
 }
 
 func Parse(id int64) (ts int64, instID int64, sn int64) {
-	return (id >> 24) + timeOff, id & 0xF, (id >> 4) & 0xFFFFF
+	return (id >> 24) + timeOff, (id >> 20) & 0xF, id & 0xFFFFF
 }
