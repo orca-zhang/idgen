@@ -10,7 +10,7 @@ import (
 	"github.com/orca-zhang/ecache"
 )
 
-const timeOff = 1660817898 // 2022-08-18 18:18:18, js integer won't overflow(53bit) before 2039-08-23 13:06:49(2197688809)
+const timeOff = 1662688799 // 2022-09-09 09:59:59, js integer won't overflow(53bit) before 2090-09-27 13:14:06(3810172446)
 const expiration = time.Minute
 
 var cache = ecache.NewLRUCache(16, 32, expiration)
@@ -41,7 +41,7 @@ func (ig *IDGen) New() (id int64, err error) {
 	key := fmt.Sprintf("idgen:%d:%d", (ig.instID & 0xF), ts)
 	if ig.redisCli != nil {
 		if sn, err = ig.redisCli.Incr(key).Result(); err != nil {
-			sn = rand.Int63n(1048576) // downgrade to use random num
+			sn = rand.Int63n(131072) | 0x200000 // downgrade to use random num
 		} else if sn == 1 {
 			ig.redisCli.Expire(key, expiration) // new item, set expiration
 		}
@@ -52,9 +52,9 @@ func (ig *IDGen) New() (id int64, err error) {
 			cache.Put(key, &sn)
 		}
 	}
-	return ((ts - timeOff) << 24) + ((ig.instID & 0xF) << 20) + (sn & 0xFFFFF), err
+	return ((ts - timeOff) << 22) + ((ig.instID & 0xF) << 18) + (sn & 0x3FFFF), err
 }
 
 func Parse(id int64) (ts int64, instID int64, sn int64) {
-	return (id >> 24) + timeOff, (id >> 20) & 0xF, id & 0xFFFFF
+	return (id >> 22) + timeOff, (id >> 18) & 0xF, id & 0x3FFFF
 }
