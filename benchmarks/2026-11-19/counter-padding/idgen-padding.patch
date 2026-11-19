@@ -1,0 +1,44 @@
+--- a/idgen.go
++++ b/idgen.go
+@@ -9,6 +9,7 @@
+ 
+ 	"github.com/go-redis/redis/v7"
+ 	"github.com/orca-zhang/ecache2"
++	"golang.org/x/sys/cpu"
+ )
+ 
+ const timeOff = 1662688799 // 2022-09-09 09:59:59, js integer won't overflow(53bit) before 2090-09-27 13:14:06(3810172446)
+@@ -25,8 +26,12 @@
+ 	for inst := int64(0); inst < 16; inst++ {
+ 		key := [2]int64{ts, inst}
+ 		if _, ok := cache.Get(key); !ok {
+-			counter := [2]int64{ts, -1}
+-			cache.Put(key, &counter)
++			// Different instances must not share the sequence's cache line.
++			counter := struct {
++				value [2]int64
++				_     cpu.CacheLinePad
++			}{value: [2]int64{ts, -1}}
++			cache.Put(key, &counter.value)
+ 		}
+ 	}
+ }
+@@ -56,9 +61,8 @@
+ }
+ 
+ func (ig *IDGen) New() (id int64, err error) {
+-	var ts, sn int64
++	ts, sn := now(), int64(0)
+ 	if ig.redisCli != nil {
+-		ts = now()
+ 		key := fmt.Sprintf("idgen:%d:%d", ig.instID&0xF, ts)
+ 		if sn, err = ig.redisCli.Incr(key).Result(); err != nil {
+ 			sn = rand.Int63n(131072) | 0x200000 // downgrade to use random num
+@@ -66,7 +70,6 @@
+ 			ig.redisCli.Expire(key, expiration) // new item, set expiration
+ 		}
+ 	} else {
+-		ts = now()
+ 		counter := ig.counter.Load()
+ 		for counter == nil || counter[0] != ts {
+ 			if v, ok := cache.Get([2]int64{ts, ig.instID & 0xF}); ok {

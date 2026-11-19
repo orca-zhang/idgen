@@ -1,0 +1,52 @@
+{
+  "baseline_commit": "5ff9a540a6ed6fa50e9c7ca62679f595ab391f23",
+  "baseline_tag": "v0.1.0",
+  "candidate": "working tree; exact inputs hashed below",
+  "toolchain": "go1.27.4 darwin/arm64",
+  "cpu": "Apple M4 Pro, 12 logical CPUs",
+  "memory_bytes": 25769803776,
+  "os": "macOS 26.6.2 (25G83)",
+  "benchtime": "300ms",
+  "paired_runs": 5,
+  "cpu_settings": [
+    1,
+    4,
+    8
+  ],
+  "run_order": [
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "baseline"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "baseline"
+    ],
+    [
+      "baseline",
+      "candidate"
+    ]
+  ],
+  "inputs": {
+    "baseline": {
+      "idgen.go": "d4e14f356839e7868751113a53a9908d5a8d1a8c16c8da03d68385f1fa02feb3",
+      "go.mod": "94dac8d49dddf3ed3cc3b91e340ad7ea86be422533f873593e8494d8566225d0",
+      "go.sum": "a5f6fdea502e449e6549f12bd505be373623b0e7d0e9d41c245254194f74be87",
+      "idgen_bench_test.go": "788fd7c896beff4a1525b982b787614b77e8cbf9c71a180550180a00d9425b67"
+    },
+    "candidate": {
+      "idgen.go": "70e1a87516f80337c39f4ce42cc379c2517937c11e3a784df01b95383bef99f6",
+      "go.mod": "0e7d2f110828a0a8f19a70c37de13482dfb89a5211e5ae35152757b193e5b19b",
+      "go.sum": "7bd3bbf560eabddd967afafdecfda84d43f7325d497e3fc4f3a947e025b49127",
+      "idgen_bench_test.go": "788fd7c896beff4a1525b982b787614b77e8cbf9c71a180550180a00d9425b67"
+    }
+  }
+}

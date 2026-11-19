@@ -1,0 +1,74 @@
+[
+  {
+    "benchmark": "BenchmarkNewLocalSerial",
+    "two_sided_exact_rank_permutation_p": 0.8528138528138528,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalSerial-4",
+    "two_sided_exact_rank_permutation_p": 0.10173160173160173,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalSerial-8",
+    "two_sided_exact_rank_permutation_p": 0.6190476190476191,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalShared",
+    "two_sided_exact_rank_permutation_p": 0.13203463203463203,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalShared-4",
+    "two_sided_exact_rank_permutation_p": 0.3939393939393939,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalShared-8",
+    "two_sided_exact_rank_permutation_p": 0.8181818181818182,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalInstances",
+    "two_sided_exact_rank_permutation_p": 0.5887445887445888,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalInstances-4",
+    "two_sided_exact_rank_permutation_p": 0.0021645021645021645,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": true
+  },
+  {
+    "benchmark": "BenchmarkNewLocalInstances-8",
+    "two_sided_exact_rank_permutation_p": 0.0021645021645021645,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": true
+  },
+  {
+    "benchmark": "BenchmarkNewLocalFresh",
+    "two_sided_exact_rank_permutation_p": 0.6991341991341992,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalFresh-4",
+    "two_sided_exact_rank_permutation_p": 0.1645021645021645,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  },
+  {
+    "benchmark": "BenchmarkNewLocalFresh-8",
+    "two_sided_exact_rank_permutation_p": 0.13203463203463203,
+    "bonferroni_threshold": 0.004166666666666667,
+    "significant": false
+  }
+]

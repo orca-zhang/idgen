@@ -1,0 +1,45 @@
+--- a/idgen.go
++++ b/idgen.go
+@@ -25,7 +25,7 @@
+ 	for inst := int64(0); inst < 16; inst++ {
+ 		key := [2]int64{ts, inst}
+ 		if _, ok := cache.Get(key); !ok {
+-			counter := int64(-1)
++			counter := [2]int64{ts, -1}
+ 			cache.Put(key, &counter)
+ 		}
+ 	}
+@@ -44,9 +44,11 @@
+ 	}()
+ }
+ 
++// IDGen must not be copied after first use.
+ type IDGen struct {
+ 	redisCli redis.Cmdable
+ 	instID   int64
++	counter  atomic.Pointer[[2]int64] // current [timestamp, sequence], shared through cache
+ }
+ 
+ func NewIDGen(redis redis.Cmdable, inst int64) *IDGen {
+@@ -64,14 +66,18 @@
+ 			ig.redisCli.Expire(key, expiration) // new item, set expiration
+ 		}
+ 	} else {
+-		for {
+-			ts = now()
++		ts = now()
++		counter := ig.counter.Load()
++		for counter == nil || counter[0] != ts {
+ 			if v, ok := cache.Get([2]int64{ts, ig.instID & 0xF}); ok {
+-				sn = atomic.AddInt64(v.(*int64), 1)
++				counter = v.(*[2]int64)
++				ig.counter.Store(counter)
+ 				break
+ 			}
+ 			runtime.Gosched() // allow clock preparation after a pause longer than TTL
++			ts = now()
+ 		}
++		sn = atomic.AddInt64(&counter[1], 1)
+ 	}
+ 	return ((ts - timeOff) << 22) + ((ig.instID & 0xF) << 18) + (sn & 0x3FFFF), err
+ }

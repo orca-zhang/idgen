@@ -1,0 +1,95 @@
+# round 1, order baseline,before,candidate
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	167640728	         1.988 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	181212272	         1.988 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	180788878	         1.993 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	161469159	         2.331 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	16745840	        20.60 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	13274866	        42.22 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	157964220	         2.378 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	68077599	         6.259 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	49258838	         8.539 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# round 2, order baseline,candidate,before
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	179716758	         2.163 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	180715104	         2.000 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	180162633	         2.025 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	154133947	         2.301 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	23151248	        21.05 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	11182063	        41.40 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	160129824	         2.249 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	100000000	         5.366 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	48975706	         7.840 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# round 3, order before,baseline,candidate
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	180156661	         1.997 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	175710548	         2.008 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	176823548	         2.204 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	155430487	         2.288 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	23257629	        19.88 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	12202372	        42.74 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	160961355	         2.259 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	100000000	         6.263 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	49255468	         8.719 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# round 4, order before,candidate,baseline
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	179538249	         2.112 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	180403992	         2.001 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	178751754	         2.011 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	158826770	         2.262 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	18501188	        29.82 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	10639195	        42.54 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	158190708	         2.278 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	17429545	        20.86 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	12884271	        25.19 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# round 5, order candidate,baseline,before
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	180033831	         2.003 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	163895430	         2.029 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	178251243	         2.047 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	156811498	         2.260 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	19365364	        28.85 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	12349578	        31.55 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	160465587	         2.315 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	100000000	         5.154 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	15089883	        24.10 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# round 6, order candidate,before,baseline
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	170920252	         2.130 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-4      	174663801	         2.242 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalSerial-8      	166332813	         2.152 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared        	156697682	         2.294 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-4      	17685238	        21.44 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalShared-8      	11774356	        30.82 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances     	157465188	         2.322 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	17695162	        20.02 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	51111405	        11.74 ns/op	       0 B/op	       0 allocs/op
+PASS

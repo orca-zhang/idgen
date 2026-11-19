@@ -1,0 +1,34 @@
+--- a/ecache2.go
++++ b/ecache2.go
+@@ -7,6 +7,7 @@
+ 	"time"
+ 
+ 	"github.com/zeebo/xxh3"
++	"golang.org/x/sys/cpu"
+ )
+ 
+ var clock, p, n = time.Now().UnixNano(), uint16(0), uint16(1)
+@@ -186,8 +187,13 @@
+ // Cache - generic concurrent cache structure
+ // For string keys: uses XXH3-64 hash for sharding
+ // For integer keys: uses key value directly for sharding (no hash calculation)
++type cacheMutex struct {
++	sync.Mutex
++	_ cpu.CacheLinePad
++}
++
+ type Cache[K Hashable] struct {
+-	locks      []sync.Mutex
++	locks      []cacheMutex
+ 	insts      [][2]*cache[K] // level-0 for normal LRU, level-1 for LRU-2
+ 	expiration time.Duration
+ 	on         inspector[K]
+@@ -203,7 +209,7 @@
+ func NewLRUCache[K Hashable](bucketCnt, capPerBkt uint16, expiration ...time.Duration) *Cache[K] {
+ 	mask := maskOfNextPowOf2(bucketCnt)
+ 	c := &Cache[K]{
+-		make([]sync.Mutex, mask+1),
++		make([]cacheMutex, mask+1),
+ 		make([][2]*cache[K], mask+1),
+ 		0,
+ 		func(int, K, *interface{}, []byte, int) {},

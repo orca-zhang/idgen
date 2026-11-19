@@ -1,0 +1,98 @@
+{
+  "baseline_commit": "5ff9a540a6ed6fa50e9c7ca62679f595ab391f23",
+  "baseline_tag": "v0.1.0",
+  "candidate": "working tree; per-generator atomic pointer; ecache2 v0.1.0 unchanged",
+  "toolchain": "go1.27.4 darwin/arm64",
+  "cpu": "Apple M4 Pro, 12 logical CPUs",
+  "memory_bytes": 25769803776,
+  "os": "macOS 26.6.2 (25G83)",
+  "benchtime": "300ms",
+  "paired_runs": 6,
+  "cpu_settings": [
+    1,
+    4,
+    8
+  ],
+  "run_order": [
+    [
+      "baseline",
+      "before",
+      "candidate"
+    ],
+    [
+      "baseline",
+      "candidate",
+      "before"
+    ],
+    [
+      "before",
+      "baseline",
+      "candidate"
+    ],
+    [
+      "before",
+      "candidate",
+      "baseline"
+    ],
+    [
+      "candidate",
+      "baseline",
+      "before"
+    ],
+    [
+      "candidate",
+      "before",
+      "baseline"
+    ]
+  ],
+  "inputs": {
+    "baseline": {
+      "idgen.go": "d4e14f356839e7868751113a53a9908d5a8d1a8c16c8da03d68385f1fa02feb3",
+      "idgen_bench_test.go": "788fd7c896beff4a1525b982b787614b77e8cbf9c71a180550180a00d9425b67",
+      "go.mod": "94dac8d49dddf3ed3cc3b91e340ad7ea86be422533f873593e8494d8566225d0",
+      "go.sum": "a5f6fdea502e449e6549f12bd505be373623b0e7d0e9d41c245254194f74be87",
+      "binary_sha256": "e88ae122f3781a54a8e1f6b12f2eb18e9048bf3e12373519e0572f1d8c0754af"
+    },
+    "before": {
+      "idgen.go": "70e1a87516f80337c39f4ce42cc379c2517937c11e3a784df01b95383bef99f6",
+      "idgen_bench_test.go": "788fd7c896beff4a1525b982b787614b77e8cbf9c71a180550180a00d9425b67",
+      "go.mod": "0e7d2f110828a0a8f19a70c37de13482dfb89a5211e5ae35152757b193e5b19b",
+      "go.sum": "7bd3bbf560eabddd967afafdecfda84d43f7325d497e3fc4f3a947e025b49127",
+      "binary_sha256": "78b3e61d4cda435c7e7245ab36664dde81b1bd2a36b0a2bff8bcb5514e908863"
+    },
+    "candidate": {
+      "idgen.go": "e8647d89ec3842aa51f1918324d3063c8065215588968a3314a9a75b1621657b",
+      "idgen_bench_test.go": "788fd7c896beff4a1525b982b787614b77e8cbf9c71a180550180a00d9425b67",
+      "go.mod": "0e7d2f110828a0a8f19a70c37de13482dfb89a5211e5ae35152757b193e5b19b",
+      "go.sum": "7bd3bbf560eabddd967afafdecfda84d43f7325d497e3fc4f3a947e025b49127",
+      "binary_sha256": "ba73f625959eee84a102b9f8a3aa28d271efdbd20a68fdbe7246bdf9c61ebebe"
+    }
+  },
+  "before": "previous prototype; exact inputs below",
+  "hardware_cache_line_bytes": 128,
+  "command_arguments": [
+    "-test.run=^$",
+    "-test.bench=^BenchmarkNewLocal",
+    "-test.benchmem",
+    "-test.benchtime=300ms",
+    "-test.cpu=1,4,8",
+    "-test.count=1"
+  ],
+  "ecache2_source_sha256": "7c955b83e6bbea76fa626ef03a69eca7607232ec928cec1613a01c82b9444b70",
+  "lock_diagnostic": {
+    "runs": 3,
+    "cpu_settings": [
+      1,
+      4,
+      8
+    ],
+    "benchtime": "500ms",
+    "benchmark": "BenchmarkNewLocalInstances",
+    "before_binary_sha256": "9f22cb396078b65a3270d4b63c558fe81c595756ccf914621c231ba7e2a9da7a",
+    "padded_binary_sha256": "0fcd716e749dade55e8f089dac8cf8148329150a572bd626da3506ec789909d4",
+    "original_ecache2_source_sha256": "7c955b83e6bbea76fa626ef03a69eca7607232ec928cec1613a01c82b9444b70",
+    "padded_ecache2_source_sha256": "141277b8032ba2eeec0ab730b2f7745100fd897e76f59342c18ae0363f136678",
+    "idgen_go_sha256": "70e1a87516f80337c39f4ce42cc379c2517937c11e3a784df01b95383bef99f6",
+    "applied_to_final_candidate": false
+  }
+}

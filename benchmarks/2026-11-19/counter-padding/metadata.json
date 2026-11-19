@@ -1,0 +1,69 @@
+{
+  "before": "previous unpublished pointer-reuse optimization, ecache2 v0.1.0",
+  "candidate": "counter padding and one clock read before branching, ecache2 v0.1.1",
+  "toolchain": "go1.27.4 darwin/arm64",
+  "cpu": "Apple M4 Pro, 12 logical CPUs",
+  "os": "macOS 26.6.2",
+  "cache_line_bytes": 128,
+  "paired_runs": 6,
+  "run_order": [
+    [
+      "before",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "before"
+    ],
+    [
+      "before",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "before"
+    ],
+    [
+      "before",
+      "candidate"
+    ],
+    [
+      "candidate",
+      "before"
+    ]
+  ],
+  "command_arguments": [
+    "-test.run=^$",
+    "-test.bench=^BenchmarkNewLocal",
+    "-test.benchmem",
+    "-test.benchtime=300ms",
+    "-test.cpu=1,4,8",
+    "-test.count=1"
+  ],
+  "inputs": {
+    "before": {
+      "idgen.go": "e8647d89ec3842aa51f1918324d3063c8065215588968a3314a9a75b1621657b",
+      "idgen_bench_test.go": "df114b01070d7d3a75e1c8add7a01a17bc56c801438369c44d3311e307ff8f9c",
+      "go.mod": "0e7d2f110828a0a8f19a70c37de13482dfb89a5211e5ae35152757b193e5b19b",
+      "go.sum": "7bd3bbf560eabddd967afafdecfda84d43f7325d497e3fc4f3a947e025b49127",
+      "binary_sha256": "564a1e55c0d34611490e0f1acb0dc75e657742faeef8776d1165a90dbf2a2b09"
+    },
+    "candidate": {
+      "idgen.go": "ad6a0056eeb80d1bd2b1f9d8dbec168094abb4fffe6fa12533b3f126f8a56be9",
+      "idgen_bench_test.go": "df114b01070d7d3a75e1c8add7a01a17bc56c801438369c44d3311e307ff8f9c",
+      "go.mod": "7f36c80a6dc58ae41e22a1da01c2516ac6f2b4e42b93456abb01292f51bd142c",
+      "go.sum": "cc2d6311641f3b70c6e84cb169bd355a06dc9e3ebe79c804a5258063de20b275",
+      "binary_sha256": "f94413db5613850c2b59295bb984f86fb7a739f8e84862e9ba659d847411e4a7"
+    }
+  },
+  "verification": {
+    "go127_core_race": "10 repeated runs passed: concurrent uniqueness, rollback, counter refresh, existing local/parse tests",
+    "go127_full_race": "all tests passed against isolated local Redis 8.10.2",
+    "go122_race": "core tests passed with external linking; existing macOS LC_DYSYMTAB warning",
+    "files_integration": "temporary modfile with local candidate; concurrent manifests and refresh/restart tests passed with race",
+    "go_vet": "passed",
+    "go_mod_verify": "passed",
+    "existing_test_files": "idgen_test.go and idgen_concurrency_test.go SHA-256 unchanged from start of turn"
+  },
+  "publication": "idgen v0.1.1; exact implementation inputs hashed above"
+}

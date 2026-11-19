@@ -1,0 +1,29 @@
+# trial 1
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalInstances     	39390109	        15.26 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	10161338	        68.32 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	 6898368	        89.53 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# trial 2
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalInstances     	38148726	        15.91 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	10251204	        63.34 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	 4895073	       108.7 ns/op	       0 B/op	       0 allocs/op
+PASS
+
+# trial 3
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalInstances     	37367946	        17.53 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-4   	10246470	        66.61 ns/op	       0 B/op	       0 allocs/op
+BenchmarkNewLocalInstances-8   	 4939965	       116.7 ns/op	       0 B/op	       0 allocs/op
+PASS

@@ -1,0 +1,79 @@
+# Paired run 1
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	 4601704	        85.88 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-4      	 4884567	        73.14 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-8      	 4866259	        75.00 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared        	 4505253	        83.71 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-4      	 2907877	       133.4 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-8      	 1750434	       206.0 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances     	 4475143	        85.09 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-4   	 9271957	        49.75 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-8   	 3894140	       100.8 ns/op	      32 B/op	       2 allocs/op
+PASS
+
+# Paired run 2
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	 4455256	        86.05 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-4      	 4890362	        72.29 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-8      	 5029243	        73.18 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared        	 4220155	        90.96 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-4      	 2092006	       156.3 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-8      	 1759504	       201.6 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances     	 4239343	        90.55 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-4   	 5178595	        58.32 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-8   	 3085155	       108.4 ns/op	      32 B/op	       2 allocs/op
+PASS
+
+# Paired run 3
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	 4376488	        89.93 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-4      	 4768416	        76.01 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-8      	 4621036	        76.21 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared        	 4252694	        90.26 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-4      	 2049080	       170.5 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-8      	 1797876	       195.8 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances     	 4218012	        90.33 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-4   	 6244890	        49.88 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-8   	 3387540	       101.4 ns/op	      32 B/op	       2 allocs/op
+PASS
+
+# Paired run 4
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	 4426478	        92.32 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-4      	 4735105	        75.27 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-8      	 4759981	        75.85 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared        	 4268196	        89.02 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-4      	 2029542	       177.8 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-8      	 1801305	       202.2 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances     	 4211198	        89.86 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-4   	 5522188	        67.93 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-8   	 3222508	       105.9 ns/op	      32 B/op	       2 allocs/op
+PASS
+
+# Paired run 5
+goos: darwin
+goarch: arm64
+pkg: github.com/orca-zhang/idgen
+cpu: Apple M4 Pro
+BenchmarkNewLocalSerial        	 4331929	        89.86 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-4      	 4812541	        75.93 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalSerial-8      	 4664244	        76.98 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared        	 4147335	        91.82 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-4      	 2470771	       149.5 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalShared-8      	 1801603	       200.7 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances     	 4393878	        89.53 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-4   	 5063236	        59.68 ns/op	      32 B/op	       2 allocs/op
+BenchmarkNewLocalInstances-8   	 3472438	       107.3 ns/op	      32 B/op	       2 allocs/op
+PASS
