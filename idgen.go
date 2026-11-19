@@ -3,6 +3,7 @@ package idgen
 import (
 	"fmt"
 	"math/rand"
+	"sync"
 	"sync/atomic"
 	"time"
 
@@ -14,6 +15,7 @@ const timeOff = 1662688799 // 2022-09-09 09:59:59, js integer won't overflow(53b
 const expiration = time.Minute
 
 var cache = ecache.NewLRUCache(16, 32, expiration)
+var cacheInitMu sync.Mutex
 var clock = time.Now().Unix()
 
 func now() int64 { return atomic.LoadInt64(&clock) }
@@ -46,11 +48,19 @@ func (ig *IDGen) New() (id int64, err error) {
 			ig.redisCli.Expire(key, expiration) // new item, set expiration
 		}
 	} else {
-		if v, ok := cache.Get(key); ok {
-			sn = atomic.AddInt64(v.(*int64), 1)
-		} else {
-			cache.Put(key, &sn)
+		v, ok := cache.Get(key)
+		if !ok {
+			cacheInitMu.Lock()
+			v, ok = cache.Get(key)
+			if !ok {
+				// Publish one shared counter, separate from each call's result.
+				counter := int64(-1)
+				v = &counter
+				cache.Put(key, v)
+			}
+			cacheInitMu.Unlock()
 		}
+		sn = atomic.AddInt64(v.(*int64), 1)
 	}
 	return ((ts - timeOff) << 22) + ((ig.instID & 0xF) << 18) + (sn & 0x3FFFF), err
 }

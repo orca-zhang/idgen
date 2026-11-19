@@ -3,7 +3,7 @@
 <p align="center">一款基于❄️算法实现的🆔生成器</p>
 <p align="center">
   <a href="/go.mod#L3" alt="go version">
-    <img src="https://img.shields.io/badge/go%20version-%3E=1.11-brightgreen?style=flat"/>
+    <img src="https://img.shields.io/badge/go%20version-%3E=1.22-brightgreen?style=flat"/>
   </a>
   <a href="https://github.com/orca-zhang/ecache/blob/master/LICENSE" alt="license MIT">
     <img src="https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat">
@@ -13,6 +13,7 @@
 ## 特性
 
 - 🚀 支持基于redis或者本地生成（redis操作失败降级为随机数）
+- 🔒 本地模式支持并发调用；同一进程内相同实例号的生成器共享序号
 - ⌚ ntp同步和时钟回跳安全（默认最多`expiration`时间内，目前为一分钟）
 - 🦖 js对接时整型精度不丢失，`2090-09-27 13:14:06(3810172446)`前不会超过53位
 - 🏳️‍🌈 42位时间戳+4位实例号（可多个节点复用，最多可独立部署16个发号器）+18位序号（一秒内单实例分配不超过13万个）
